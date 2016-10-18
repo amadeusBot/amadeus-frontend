@@ -1,0 +1,168 @@
+.buttonWhite {
+  color: white !important;
+}
+.signUpView {
+  ion-content {
+    background: rgb(0,221,234); /* Old browsers */
+    background: -moz-linear-gradient(top,  rgba(0,221,234,1) 0%, rgba(1,161,181,1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  rgba(0,221,234,1) 0%,rgba(1,161,181,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  rgba(0,221,234,1) 0%,rgba(1,161,181,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ddea', endColorstr='#01a1b5',GradientType=0 ); /* IE6-9 */
+  }
+  .starterTitle {
+    font-weight: 300;
+  }
+  .signUpSubtitle {
+    font-weight: 200;
+    margin-top:20px;
+    font-size: 16px;
+    font-family: 'RobotoRegular';
+    &.voice{
+      font-family: 'RobotoLight';
+      font-size: 14px;
+    }
+  }
+
+  .stepsCircles {
+    color: #02aeba;
+    position: absolute;
+    right: 0;
+  }
+
+  h1, h2, h3, h4, span, label, p, input {
+    color: white;
+  }
+
+  input::-webkit-input-placeholder {
+    color: white;
+  }
+
+  .imgIcon {
+    width: 4em;
+    margin-bottom: 3em;
+  }
+
+  .signupListForm {
+    .item.item-input {
+      border-top: 0;
+      border-left: 0;
+      border-right: 0;
+      margin: 0 .8em .8em .8em;
+      padding: 0;
+      .input-label {
+        font-weight: bold;
+      }
+    }
+    .validNumberIcon {
+      bottom: 5px;
+      color: white;
+      position: absolute;
+      right: 0;
+    }
+  }
+  .button.button-full {
+    font-size: 17px;
+  }
+
+  .input-pin-code {
+    display: inline-block;
+    text-align: center;
+    border-bottom: 1px solid white;
+    margin: 0.2em;
+    width: 1.5em;
+    height: 1.5em;
+    background-color: transparent;
+    font-size: 1.6em;
+    color: #fff;
+
+  }
+
+  .addAccountIcon {
+    color: white;
+    font-size: 7em;
+    margin: .2em 0;
+    &:before {
+      font-size: .8em;
+    }
+  }
+
+
+  .voiceIcon {
+    color: white;
+    font-size: 11em;
+    margin: 70px 0;
+    &:before {
+      font-size: .8em;
+    }
+  }
+
+  .fingerprintIcon{
+    margin: 70px 0;
+    width:30%;
+  }
+
+}
+
+.bankAccountsSelection {
+  ion-content .scroll {
+    height: 100%;
+  }
+  .buttonAlignBottom {
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    width: 100%;
+  }
+  .selectedBanks {
+    &:first-child {
+      margin-top: 2em;
+    }
+    border-bottom: 1px solid white;
+    margin: 0 2em .5em;
+    padding: 0 .5em;
+    .bankName {
+      font-weight: bold;
+      font-size: 1.1em;
+    }
+  }
+}
+.modalBanks {
+  ion-header-bar {
+    background-color: #0097A7;
+  }
+}
+
+.accountDetailsPopup {
+  .popup {
+    background-color: white;
+  }
+  .item.item-input {
+    background: transparent;
+    border-top: 0;
+    border-right: 0;
+    border-left: 0;
+  }
+}
+
+.back-button-next{
+  background: #00838f;
+}
+.maybe-later-button{
+  font-size: 18px;
+}
+
+.searchfield-banks{
+  background: #fff;
+}
+
+.close-bank-attach{
+  border:none;
+}
+
+.bank-attach-list{
+  background: #F2F2F2;
+}
+
+.voice-subtitle-row{
+  padding: 0px 25px 0px 25px;
+}

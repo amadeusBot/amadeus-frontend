@@ -1,0 +1,81 @@
+<ion-view view-title="SignUp" class="signUpView">
+  <ion-content class="padding">
+
+    <div class="stepsCircles">
+      <i class="ion-ios-circle-outline"></i>
+      <i class="ion-record"></i>
+      <i class="ion-ios-circle-outline"></i>
+      <i class="ion-ios-circle-outline"></i>
+      <i class="ion-ios-circle-outline"></i>
+    </div>
+
+    <div class="row">
+      <div class="col text-center">
+        <img src="img/icon.png" class="imgIcon">
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col text-center">
+        <h2 class="signUpTitle">PHONE VERIFICATION</h2>
+        <h4 class="signUpSubtitle">Automatic SMS will be sent to your phone</h4>
+      </div>
+    </div>
+
+    <!--SHOW INPUT TO INTRODUCE THE PHONE NUMBER-->
+    <div ng-if="signUpCtrl.steps.addPhone">
+      <div class="list signupListForm">
+        <label class="item item-input item-floating-label">
+          <span class="input-label">Phone number</span>
+          <input type="tel" placeholder="Phone number" limit-to="12" ng-model="signUpCtrl.userPhoneNumber"
+                 ng-change="signUpCtrl.checkPhoneNumber()">
+
+          <i ng-show="signUpCtrl.validPhoneNumber"
+             class="icon ion-ios-checkmark-outline placeholder-icon validNumberIcon"></i>
+        </label>
+      </div>
+    </div>
+
+
+    <!--SHOW VERIFICATION CODE-->
+    <div ng-if="signUpCtrl.steps.verifyPhone">
+      <h4 class="text-center">Verification CODE</h4>
+
+      <div class="row">
+        <div class="col text-center">
+          <input type="number" pattern="[0-9]*" class="input-pin-code"
+                 ng-model="signUpCtrl.verificationCode1" numbers-only="password" maxlength="1" required="required"
+                 size="1">
+          <input type="number" pattern="[0-9]*" class="input-pin-code"
+                 ng-model="signUpCtrl.verificationCode2" numbers-only="password" maxlength="1" required="required"
+                 size="1">
+          <input type="number" pattern="[0-9]*" class="input-pin-code"
+                 ng-model="signUpCtrl.verificationCode3" numbers-only="password" maxlength="1" required="required"
+                 size="1">
+          <input type="number" pattern="[0-9]*" class="input-pin-code"
+                 ng-model="signUpCtrl.verificationCode4" numbers-only="password" maxlength="1" required="required"
+                 size="1">
+          <input type="number" pattern="[0-9]*" class="input-pin-code"
+                 ng-model="signUpCtrl.verificationCode5" numbers-only="password" maxlength="1" required="required"
+                 size="1">
+          <input type="number" pattern="[0-9]*" class="input-pin-code"
+                 ng-model="signUpCtrl.verificationCode6" numbers-only="password" maxlength="1" required="required"
+                 size="1">
+        </div>
+      </div>
+
+      <div class="text-right">
+        <a class="button button-clear button-light buttonWhite" on-tap="signUpCtrl.generateLocalNotification()">Re-send code</a>
+      </div>
+    </div>
+
+  </ion-content>
+
+  <ion-footer-bar class="nopadding">
+    <button class="button button-full nomargin button-calm" on-tap="signUpCtrl.nextStep()">
+      NEXT
+    </button>
+  </ion-footer-bar>
+
+</ion-view>

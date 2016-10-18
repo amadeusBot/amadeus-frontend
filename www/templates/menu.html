@@ -1,0 +1,45 @@
+<ion-side-menus enable-menu-with-back-views="false">
+  <ion-side-menu-content class="distContainer">
+
+    <ion-header-bar class="head nopadding header-menu-tab" style="height: 112px !important">
+      <div class="row fRow">
+        <div class="col col-40 toggleMenu" menu-toggle="left"><i class="ion-navicon"></i><img class="amadeusHead" src="img/amadeusHead.png"></div>
+        <div class="col col-60 text-right info" on-tap="menu.showInfo()"><i class="ion-ios-information-outline"></i></div>
+      </div>
+      <div class="row sRow">
+        <div class="col col-50 text-center tab-title" on-tap="menu.activeIndex = 0" ui-sref="app.chat" ng-class="{'isActive':menu.activeIndex == 0}">CHAT</div>
+        <div class="col col-50 text-center tab-title" on-tap="menu.activeIndex = 1" ui-sref="app.accounts" ng-class="{'isActive':menu.activeIndex == 1}">MY ACCOUNTS</div>
+      </div>
+    </ion-header-bar>
+    <ion-nav-view name="menuContent"></ion-nav-view>
+  </ion-side-menu-content>
+
+  <ion-side-menu side="left">
+    <ion-content class="menu" >
+      <ion-list>
+        <ion-item menu-close on-tap="menu.activeItem='Amadeus'" ng-class="{'isActive': menu.activeItem == 'Amadeus'}" ng-click="login()">
+          Amadeus
+        </ion-item>
+        <ion-item menu-close on-tap="menu.activeItem='Contacts'" ng-class="{'isActive': menu.activeItem == 'Contacts'}" href="#/app/search">
+          Contacts
+        </ion-item>
+        <ion-item menu-close on-tap="menu.activeItem='My Tickets'" ng-class="{'isActive': menu.activeItem == 'My Tickets'}" href="#/app/browse">
+          My Tickets
+        </ion-item>
+        <ion-item menu-close on-tap="menu.activeItem='Settings'" ng-class="{'isActive': menu.activeItem == 'Settings'}" href="#/app/playlists">
+          Settings
+        </ion-item>
+        <ion-item menu-close on-tap="menu.activeItem='Log out'" ng-class="{'isActive': menu.activeItem == 'Log out'}" href="#/app/playlists">
+          Log out
+        </ion-item>
+      </ion-list>
+    </ion-content>
+    <ion-footer-bar class="bar-stable item-input-inset footerSideMenu">
+      <div class="row">
+        <div class="col">
+          <img src="img/userImg.png" alt=""> {{menu.userInfo.name}}
+        </div>
+      </div>
+    </ion-footer-bar>
+  </ion-side-menu>
+</ion-side-menus>

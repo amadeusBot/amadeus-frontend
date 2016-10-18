@@ -1,0 +1,417 @@
+@import "mixins";
+@import "colors";
+
+.popupStyle {
+  .popup {
+    width: 260px !important;
+    border-radius: 7px !important;
+    border: 1px solid #DCDCDC !important;
+    .popup-head {
+      display: none;
+    }
+    .popup-body {
+      text-align: center;
+      h3 {
+        font-size: 1.05em;
+        color: #000;
+        font-weight: 900;
+      }
+      p {
+        font-weight: 400;
+        margin-bottom: 5px;
+        font-size: 0.95em;
+      }
+      h4 {
+        font-weight: 500;
+        margin-bottom: 5px;
+        font-size: 1.15em;
+      }
+      .item-radio {
+        .radio-icon {
+          color: $greenTxt;
+        }
+      }
+    }
+    .popup-buttons {
+      border-top: 1px solid $menuTxt !important;
+      min-height: 50px !important;
+      padding: 0 !important;
+      button {
+        background-color: transparent !important;
+        border: 0;
+        color: $blueTxt !important;
+      }
+    }
+  }
+  &.withTitle {
+    .popup {
+      .popup-head {
+        display: block;
+        h3 {
+          &.popup-title {
+            font-size: 1.2em;
+          }
+        }
+      }
+    }
+  }
+  &.changeCategory{
+    .popup-head{
+      display: block !important;
+    }
+  }
+}
+
+.recordButtons{
+  height:100px;
+  @include flex();
+  @include aligns-items(center);
+  @include justify-content(center);
+
+  label{
+    margin:0;
+    height:50px;
+    margin-right:.8em;
+  }
+  input{  height:40px;}
+  .btnInter{
+    width: 50px;
+    height: 50px;
+    @include box-shadow(0px,2px,4px,rgba(0,0,0,0.3));
+    border:0;
+    &.micro {
+      margin-left: 40px;
+      i{color:#fff;
+        font-size:2em;
+      }
+      &.reduceMargin{
+        margin-left: 15px;
+      }
+    }
+    background: $turquoise_blue_two;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50px;
+    img{
+      width: 27px;
+      height: 16px;
+    }
+  }
+  .sendInit{
+    overflow:hidden;
+    -webkit-transition: width 1s ease-in-out;
+    -moz-transition: width 1s ease-in-out;
+    -o-transition: width 1s ease-in-out;
+    transition: width 1s ease-in-out;
+    @include box-shadow(0px,2px,4px,rgba(0,0,0,0.3));
+    width:50px;
+    height:50px;
+    border-radius:50px;
+    background-color:$turquoise_blue_two;
+    label{background:#fff;}
+    &.expand{
+      background-color:#fff;
+      overflow:hidden;
+      -webkit-transition: width 1s ease-in-out;
+      -moz-transition: width 1s ease-in-out;
+      -o-transition: width 1s ease-in-out;
+      transition: width 1s ease-in-out;
+      border-radius:5px;
+      width:85%;
+    }
+  }
+}
+
+.scroll {
+  min-width: 100% !important;
+}
+
+.row + .row{
+  margin:0 !important;
+}
+.platform-android .bar .title{
+  text-align: center !important;
+}
+
+.bar.bar-stable.bar-footer{
+  background-image:none;
+  background-color: #fff;
+}
+
+.login{
+  .loginLogo{
+    margin:2em 0em;
+    img{width:100%;}
+  }
+  .list{margin-bottom:2em;}
+  .padding{
+    padding-bottom:0;
+    button{background-color:#004589;}
+  }
+  .errorLogin{color: red;}
+}
+
+.generalChat{
+  &.has-footer{
+    bottom:90px !important;
+  }
+}
+.distContainer{
+  .head{
+    background-color:#00bad1;
+    height: 120px !important;
+    border:0;
+    padding-bottom: 0em;
+    border-bottom:1px solid #000;
+    @include flex();
+    @include aligns-items(center);
+    flex-direction:column;
+    color:#fff;
+    .fRow{
+      @include aligns-items(center);
+      margin-bottom:1em;
+      .amadeusHead{width:100%;}
+    }
+    .sRow{
+      padding: 0em;
+      color: rgba(255,255,255,0.5);
+      >div{
+        padding-bottom:1em;
+      }
+      .isActive{
+        border-bottom:3px solid #fff;
+        color: rgba(255,255,255,1.0);
+      }
+    }
+    .toggleMenu{
+      @include flex();
+      @include aligns-items(center);
+      font-size:1.2em;
+      i{font-size: 2.2em; margin-right:.5em;}
+    }
+    .info{font-size:2.5em;}
+  }
+  .has-header{
+    top:110px !important;
+  }
+  .bar{background-image:none;}
+  .msgContainer{
+    @include flex();
+    @include aligns-items(center);
+    @include justify-content(center);
+    flex-direction:column;
+    .chatContainer{
+      @include flex();
+      @include aligns-items(center);
+    }
+  }
+  .chat{
+    &.fromMe{
+      justify-content:flex-end;
+      text-align:right;
+      .usrImg{width:30px;height:30px;  margin-left:.2em; border-radius:50px;}
+      .resp{
+        background: #00bad1;
+        border: 1px solid #00bad1;
+        color:#fff;
+        border-radius: 20px 20px 0px;
+
+      }
+    }
+    &.fromBot{
+      justify-content:flex-start;
+      .botImg{width:30px;height:30px;  margin-right:.2em; border-radius:50px;}
+      .resp{
+        background: #eceff1;
+        border: 1px solid #eceff1;
+        border-radius: 20px 20px 20px 0px;
+        .wide-as-needed {
+          overflow: scroll;
+          white-space: nowrap;
+        }
+      }
+    }
+    .resp{
+      @include flex();
+      @include aligns-items(center);
+      padding:.7em 1.5em;
+      margin: .7em 0em;
+      border-radius:20px;
+      background-color:#fff;
+    }
+
+  }
+  .scrollContainer{
+    @include flex();
+    flex-direction:row;
+    margin-bottom: 5px;
+    .officeCard{
+      margin:0 .5em;
+      width: 245px;
+      @include flex();
+      @include aligns-items(center);
+      @include justify-content(center);
+      .mapHeight{
+        width:100%;
+        height:180px;
+      }
+    }
+  }
+
+  .toggleCont{
+    @include flex();
+    @include aligns-items(center);
+    @include justify-content(center);
+    label{margin:0 .2em; color: #000;}
+  }
+
+
+
+}
+
+.modalContacts{
+  @include flex();
+  @include aligns-items(center);
+  @include justify-content(center);
+  flex-direction: column;
+  font-size: 1.3em;
+  margin: 0 .5em;
+  border:1px solid #00bad1;
+
+  &.existing{
+    background-color: #00bad1;
+    color:#fff;
+  }
+
+  &.newOne{
+    background-color: #fff;
+    color:#00bad1;
+  }
+}
+
+.modalContactsContent{
+  .headerChooseContact{
+    @include flex();
+    @include aligns-items(center);
+    height:50px;
+    .alignHeaderContact{
+      @include flex();
+      @include justify-content(flex-end);
+    }
+    i{
+      font-size:40px;
+      margin-right:20px;
+    }
+  }
+}
+
+.exchange{
+  @include flex();
+  @include aligns-items(center);
+  @include justify-content(center);
+  img{height:70px; margin: 0 .5em;}
+}
+
+.recordPopup{
+  @include flex();
+  @include aligns-items(flex-end);
+  .popup{
+    width:100% !important;
+    height:350px;
+    .popup-head{display:none;}
+
+    .recordContainer{
+      .fRecord{
+        margin:0 !important;
+        #soundwave {
+          canvas{width:100% !important;}
+        }
+        &.iUnderstood{
+          .inputUnderstood{
+            background: transparent;
+            border: 0;
+            font-size: 18px;
+          }
+          .understoodFromBot{
+            @include flex();
+            @include aligns-items(center);
+            flex-direction: row;
+            .botImg{width:30px;height:30px;  margin-right:.2em; border-radius:50px;}
+            .textBotUnderstood{
+              padding:.5em;
+              border: 1px solid #e4e9ec;
+              border-radius: 20px 20px 20px 0px;
+            }
+          }
+
+        }
+      }
+      .row{
+        @include flex();
+        @include aligns-items(center);
+        @include justify-content(center);
+        flex-direction:column;
+      }
+    }
+    .recordButtonsPopup{
+      .popup-buttons{
+        width:100%;
+        margin-top:50px;
+        .col{
+          @include flex();
+          @include aligns-items(center);
+          &.btnTrash{
+            @include justify-content(flex-end !important);
+            .redBtn{
+              background: $tomato !important;
+            }
+          }
+          .btnRec{i{color:#fff;}}
+          &.btnTrash{@include justify-content(flex-start);}
+        }
+        .button{
+          flex:0 !important;
+          border-radius:50px;
+          width:50px;
+          height:50px;
+          background: $white;
+          margin: 0 1em;
+          -webkit-box-shadow: 0px 0px 24px 2px rgba(0,0,0,0.4);
+          -moz-box-shadow: 0px 0px 24px 2px rgba(0,0,0,0.4);
+          box-shadow: 0px 0px 24px 2px rgba(0,0,0,0.4);
+          &.button-positive{
+            background:$turquoise_blue_two;
+          }
+          i{font-size:1.5em;}
+          .ion-trash-b{
+            color:#cdcdcd;
+          }
+        }
+      }
+    }
+
+
+  }
+}
+.coordinateCodePopup{
+  .popup {
+    background: #f2f2f2;
+  }
+  .popup-head h3 {
+    padding: .5em 1em;
+  }
+  .popup-body input {
+    font-size: 2em;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 4em;
+    color: $ocean;
+  }
+  .popup-buttons {
+    button:first-child {
+      font-size: .95em;
+    }
+  }
+}

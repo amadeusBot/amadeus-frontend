@@ -1,0 +1,70 @@
+<ion-view view-title="Accounts">
+  <ion-content>
+    <div ng-repeat="account in accountCtrl.userAccounts">
+      <div class="item item-divider account-list-banks" ng-show="account.bank_name !== accountCtrl.userAccounts[$index-1].bank_name">
+    	   {{account.bank_name}}
+  	 </div>
+  	<div class="card">
+  		<div class="item item-text-wrap">
+  			<div class="row nopadding">
+  				<div class="col col-90 nopadding">
+					<h4 class="account-subtitle nopadding">Account Name</h4>
+					<h2 class="account-title">Account {{$index + 1}}</h2>
+  				</div>
+  				<div class="col nopadding">
+
+            <button ng-click="accountCtrl.openPopover($event)" class="menu-card-icon nopadding moreOpt">
+              <figure class="menu-card-icon">
+                <img src="img/menu-icon.png">
+              </figure>
+            </button>
+  				</div>
+  			</div>
+
+  			<div class="row nopadding account-details">
+	  			<div class="col col-66 nopadding">
+	  				<span class="account-number">{{account.iban}}</span>
+	  			</div>
+
+	  			<div class="col align-right">
+	  				<span class="account-balance">{{account.balance.balance | currency:'€'}}</span>
+	  			</div>
+  			</div>
+
+  		</div>
+
+
+  		<div class="item item-divider account-divider">
+  		 	<div class="row">
+  		 		<h4 class="account-subtitle">Last statement</h4>
+  		 	</div>
+  			<div class="row">
+  				<div class="col col-80 nopadding">
+  					<h2 class="last-statement-title">{{account.lastTransaction.type}}</h2>
+  					<p class="statement-date">{{account.lastTransaction.value_date | date: 'dd MMM yyyy'}}</p>
+  				</div>
+  				<div class="col nopadding">{{account.lastTransaction.amount | currency:'€'}}</div>
+  			</div>
+  		</div>
+  	</div>
+    </div>
+  </ion-content>
+
+
+  <!--ACCOUNT POPOVER-->
+     <script id="templates/account-popover.html" type="text/ng-template">
+      <ion-popover-view class="accounts-popover">
+        <ion-content>
+          <div class="list">
+            <a class="item" target="_self">
+              Make a transfer
+            </a>
+<!--            <a class="item" href="http://ionicframework.com/docs/" target="_blank">
+              Documentation
+            </a>
+-->
+          </div>
+        </ion-content>
+      </ion-popover-view>
+    </script>
+</ion-view>

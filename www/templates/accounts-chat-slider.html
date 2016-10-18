@@ -1,0 +1,28 @@
+<ion-scroll direction="x" class="wide-as-needed nopadding">
+  <div class="scrollContainer account-chat-card">
+
+    <div class="list card officeCard card-radius" on-tap="dash.chooseBankAccount(account)"
+         ng-repeat="account in dash.userAccounts">
+      <div class="item item-body account-card-item nopadding nomargin">
+        <div class="row nopadding">
+          <div class="col nopadding card-bank">{{account.bank_name}}</div>
+        </div>
+        <div class="row">
+          <div class="col col-66 nopadding account-name-card">
+            <h4 class="account-subtitle nomargin nopadding">Account Name</h4>
+            <h2 class="account-title">Account {{$index + 1}}</h2>
+          </div>
+          <div class="col nopadding">
+            <span class="account-balance-small">{{account.balance.balance | currency:'€'}}</span>
+          </div>
+        </div>
+        <div class="row nopadding">
+          <span class="account-number scroll col">{{account.iban}}</span>
+        </div>
+        <div class="item item-divider account-divider select-account">
+          Select
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-scroll>

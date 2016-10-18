@@ -1,0 +1,188 @@
+@import "mixins";
+@import "colors";
+
+$base_onboarding_color: #34aab5;
+$ocean:#00838f;
+
+$base_header_size: 60px;
+$base_footer_size: 50px;
+$base_section_header_font_size: 1.6em;
+
+@mixin transition($property: margin, $duration: 1s) {
+  -webkit-transition: $property $duration;
+  -moz-transition: $property $duration;
+  -ms-transition: $property $duration;
+  -o-transition: $property $duration;
+  transition: $property $duration;
+}
+
+
+@mixin bgimage($path, $size, $position, $repeat, $important: no) {
+  @if $important == important {
+    background-image: url($path) !important;
+    background-size: $size !important;
+    background-position: $position !important;
+    background-repeat: $repeat !important;
+  }
+  @else {
+    background-image: url($path);
+    background-size: $size;
+    background-position: $position;
+    background-repeat: $repeat;
+  }
+}
+
+@mixin bg-tutorial-image($path) {
+  height: 100%;
+  left: 0;
+  opacity: .5;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  @include bgimage($path, cover, center, no-repeat);
+}
+
+.noMargin {
+  margin: 0 !important;
+}
+
+.noPadding {
+  padding: 0 !important;
+}
+
+.onboardingView {
+  ion-content {
+    background: rgb(0,221,234); /* Old browsers */
+    background: -moz-linear-gradient(top,  rgba(0,221,234,1) 0%, rgba(1,161,181,1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  rgba(0,221,234,1) 0%,rgba(1,161,181,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  rgba(0,221,234,1) 0%,rgba(1,161,181,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ddea', endColorstr='#01a1b5',GradientType=0 ); /* IE6-9 */
+  }
+  .headerIcon {
+    background: transparent;
+    height: 60px;
+    .title {
+      height: $base_header_size;
+      @include flex;
+      @include justify-content(center);
+      @include aligns-items(flex-end);
+    }
+  }
+  ion-content.has-header {
+    bottom: 0;
+    padding-top: $base_header_size;
+    padding-bottom: $base_footer_size;
+    top: 0 !important;
+  }
+  .tutorialCard {
+    -webkit-box-shadow: 0px 0px 18px 0px rgba(115, 115, 115, 1);
+    -moz-box-shadow: 0px 0px 18px 0px rgba(115, 115, 115, 1);
+    box-shadow: 0px 0px 18px 0px rgba(115, 115, 115, 1);
+
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    color: $base_onboarding_color;
+
+    background-color: $ocean;
+    .tutorialImage {
+      @include flex;
+      @include justify-content(center);
+      @include aligns-items(center);
+
+      background-color: $ocean;
+      height: 10em;
+      position: relative;
+
+        .image1 {
+          @include bg-tutorial-image("../img/tutorial_images/tutorial_1.png");
+        }
+        .image2 {
+          @include bg-tutorial-image("../img/tutorial_images/tutorial_2.png");
+        }
+        .image3 {
+          @include bg-tutorial-image("../img/tutorial_images/tutorial_3.png");
+        }
+        .image4 {
+          @include bg-tutorial-image("../img/tutorial_images/tutorial_4.png");
+        }
+      .botIcon {
+        width: 40%;
+        position: relative;
+      }
+    }
+
+    .item-body {
+      color: $base_onboarding_color;
+      min-height: 12em;
+      padding: 1.7em 1.7em 1.7em 1.4em;
+      .headerSection {
+        font-size: $base_section_header_font_size;
+        font-weight: bold;
+        margin-top: 0;
+        color: #34AAB5 !important;
+      }
+    }
+  }
+  .footerButtons {
+    background: transparent;
+    height: $base_footer_size;
+    @extend .noPadding;
+    @extend .noMargin;
+    .button-bar {
+      font-size: 17px;
+      .button {
+        background-color: $ocean;
+        color: white;
+        font-size: 17px;
+        &:first-child {
+          border-right: 1px solid #024c53;
+        }
+        &:last-child {
+          border-left: 1px solid #024c53;
+        }
+      }
+    }
+  }
+  .swiper-pagination.swiper-pagination-bullets {
+    .swiper-pagination-bullet-active {
+      background-color: #fff;
+    }
+    .swiper-pagination-bullet {
+      background-color: #fff;
+    }
+  }
+  .swiper-slide {
+    @include flex;
+    @include aligns-items(center);
+    &.swiper-slide-next {
+      @include transition(margin, 1s);
+      margin-left: -16%;
+      .tutorialImage {
+        @include transition(height, .5s);
+        height: 14em;
+      }
+    }
+    &.swiper-slide-prev {
+      @include transition(margin, 1s);
+      margin-right: 16%;
+      margin-left: 16%;
+      .tutorialImage {
+        @include transition(height, .5s);
+        height: 14em;
+      }
+    }
+    &.swiper-slide-active {
+      @include transition(margin, 1s);
+
+      margin-left: -32%;
+      margin-right: 0;
+      .tutorialImage {
+        @include transition(height, .5s);
+        height: 10em;
+      }
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+  }
+}

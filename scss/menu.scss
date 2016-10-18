@@ -1,0 +1,52 @@
+@import "mixins";
+
+.menu{
+
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    color-stop(0, #0291A4),
+    color-stop(1, #027685)
+  );
+  background-image: -o-linear-gradient(right, #0291A4 0%, #027685 100%);
+  background-image: -moz-linear-gradient(right, #0291A4 0%, #027685 100%);
+  background-image: -webkit-linear-gradient(right, #0291A4 0%, #027685 100%);
+  background-image: -ms-linear-gradient(right, #0291A4 0%, #027685 100%);
+  background-image: linear-gradient(to right, #0291A4 0%, #027685 100%);
+ 
+  @include flex();
+  @include aligns-items(center);
+  @include justify-content(flex-start);
+  padding-left:50px;
+  .item,.item-content{
+    background: transparent !important;
+    border-width: 0 !important;
+    color:#fff;
+    padding:0;
+    margin: 10px 0px;
+    height:50px;
+    font-weight:400;
+    @include flex();
+    @include aligns-items(center);
+    @include justify-content(flex-start);
+    &.isActive{
+      border-left: 2px solid #fff !important;
+      padding-left: 10px;
+      a{font-weight:bold;}
+    }
+  }
+}
+.footerSideMenu{
+  background-image:none !important;
+  background-color: transparent !important;
+  z-index: 10;
+  height:100px;
+  .col{
+    color:#fff;
+    @include flex();
+    @include aligns-items(center);
+    @include justify-content(center);
+    img{height:40px; margin-right:10px;}
+  }
+}

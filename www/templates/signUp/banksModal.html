@@ -1,0 +1,31 @@
+<ion-modal-view class="modalBanks">
+  <ion-header-bar class="item-input-inset">
+    <label class="item-input-wrapper searchfield-banks">
+      <i class="icon ion-ios-search placeholder-icon"></i>
+      <input type="search" placeholder="Search" ng-model="bankFilter">
+    </label>
+    <button class="button button-outline button-light buttonWhite close-bank-attach" on-tap="signUpCtrl.closeModal()">
+      Close
+    </button>
+  </ion-header-bar>
+
+  <ion-content class="bank-attach-list">
+    <div class="list">
+
+      <ion-checkbox
+        collection-repeat="bank in signUpCtrl.bankList | orderBy: 'bank_name' | filter: {bank_name: bankFilter}"
+        ng-model="bank.checked"
+        ng-checked="bank.checked"
+        ng-change="signUpCtrl.addNewAccount(bank)">
+        {{ bank.bank_name }}
+      </ion-checkbox>
+
+
+      <!--
+        <div class="item item-divider" ng-if="bank.bank_name.charAt(0) !== signUpCtrl.bankList[$index - 1].bank_name.charAt(0)">
+            {{bank.bank_name.charAt(0)}}
+        </div>
+        -->
+    </div>
+  </ion-content>
+</ion-modal-view>

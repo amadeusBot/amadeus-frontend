@@ -1,0 +1,44 @@
+<div>
+    <div class="recordContainer">
+        <div class="row fRecord" ng-if="!dash.messageIntercepted">
+            <div class="col col-100 text-center">
+                <h3>Speak Now</h3>
+            </div>
+            <div class="col col-100 text-center">
+                <h4 style="margin-top: 50px;"></h4>
+            </div>
+            <div class="col col-100 text-center">
+                <div id="soundwave"></div>
+            </div>
+        </div>
+        <div class="row fRecord iUnderstood animate pulse" ng-if="dash.messageIntercepted">
+            <div class="col col-100 text-center " style="border-bottom: 1px solid #aeaeae;">
+                <h4><input class="inputUnderstood" ng-model="dash.voiceMsg" ></h4>
+            </div>
+            <div class="col col-100 text-center">
+                <h4></h4>
+            </div>
+            <div class="col col-100 text-center" style="height: 30px;">
+
+            </div>
+            <div class="col col-100 text-center understoodFromBot">
+                <img src="img/bender.png" class="botImg">
+                <div class="textBotUnderstood">
+                    <h4>This is what I understood, is it ok?</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="recordButtonsPopup">
+        <div class="row popup-buttons">
+            <div class="col btnTrash">
+                <button class="button" ng-class="{'redBtn':dash.messageIntercepted}" on-tap="dash.trash()"><i class="ion-trash-b"></i></button>
+            </div>
+            <div class="col btnRec">
+                <button ng-if="!dash.isRecording && !dash.messageIntercepted" class="button button-positive" on-tap="dash.recordVoice()"><i class="ion-android-microphone"></i></button>
+                <button ng-if="!dash.isRecording && dash.messageIntercepted" class="button button-positive" on-tap="dash.sendMessage()"><i class="ion-checkmark"></i></button>
+                <button ng-if="dash.isRecording" class="button button-positive" on-tap="dash.recordVoice()"><i class="ion-pause"></i></button>
+            </div>
+        </div>
+    </div>
+</div>

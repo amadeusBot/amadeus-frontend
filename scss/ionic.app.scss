@@ -1,0 +1,336 @@
+/*
+To customize the look and feel of Ionic, you can override the variables
+in ionic's _variables.scss file.
+
+For example, you might change some of the default colors:
+
+$light:                           #fff !default;
+$stable:                          #f8f8f8 !default;
+$positive:                        #387ef5 !default;
+$calm:                            #11c1f3 !default;
+$balanced:                        #33cd5f !default;
+$energized:                       #ffc900 !default;
+$assertive:                       #ef473a !default;
+$royal:                           #886aea !default;
+$dark:                            #444 !default;
+*/
+
+$calm: #00838f !default;
+
+// The path for our ionicons font files, relative to the built CSS in www/css
+$ionicons-font-path: "../lib/ionic/fonts" !default;
+
+// Include all of Ionic
+@import "www/lib/ionic/scss/ionic";
+@import "menu";
+@import "colors";
+@import "chat";
+@import "signup-styles";
+@import "tutorial";
+@import "mixins";
+
+//LUCHO ************************
+$gray-color: #999999;
+$primary-cyan-color: #00B4CA;
+
+
+/* FONTS */
+@font-face {
+    font-family: RobotoLight;
+    src: url(fonts/Roboto-Light.ttf);
+}
+
+@font-face {
+    font-family: RobotoMedium;
+    src: url(fonts/Roboto-Medium.ttf);
+}
+
+@font-face {
+    font-family: RobotoRegular;
+    src: url(fonts/Roboto-Regular.ttf);
+}
+
+@font-face {
+    font-family: RobotoThin;
+    src: url(fonts/Roboto-Thin.ttf);
+}
+
+@font-face {
+    font-family: RobotoBold;
+    src: url(fonts/Roboto-Bold.ttf);
+}
+
+//*********
+
+*, p, h2{
+	font-family: "RobotoLight";
+}
+
+p.statement-date{
+	color:$gray-color;
+	font-size:12px;
+	margin-top:-3px;
+}
+
+.nopadding{
+	padding:0px !important;
+}
+
+.nomargin{
+	margin:0px !important;
+}
+
+h2.account-title{
+	font-size:20px;
+	margin-top:0px;
+	font-family: "RobotoRegular";
+	overflow:hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.account-subtitle{
+	color:$gray-color;
+	padding-bottom:10px;
+	font-family: "RobotoLight";
+	overflow:hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.menu-card-icon{
+	width:5px;
+	float:right;
+}
+
+.menu-card-icon img{
+	width: 100%;
+}
+
+.account-balance{
+	font-size: 22px;
+	line-height: 30px;
+	font-family: "RobotoRegular";
+}
+
+.account-balance-small {
+	font-size: 15px;
+	line-height: 38px;
+	font-family: "RobotoRegular";
+}
+
+
+	.moreOpt {
+		border: 0;
+		background: transparent;
+	}
+
+	.align-right {
+		text-align: right !important;
+	}
+
+	.account-number {
+		color: $gray-color;
+		font-size: 13px;
+		line-height: 45px;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+
+		&.scroll {
+			line-height: 13px;
+			padding: 0px 10px 0px 10px;
+			margin-top: 10px;
+		}
+
+	}
+
+	.account-number-scroll {
+		line-height: 13px;
+	}
+
+	.account-details {
+		margin-top: 10px !important;
+	}
+
+	.account-list-banks {
+		font-family: "RobotoRegular";
+		color: $primary-cyan-color;
+		background: #ffffff;
+		margin-top: 20px;
+		border-top: none;
+		margin-left: 24px;
+		border-left: none;
+		padding: 0px;
+	}
+
+	.account-divider {
+		margin-top: 0px;
+		padding-top: 4px;
+	}
+
+	.last-statement-title {
+		font-family: "RobotoRegular";
+	}
+
+	.accounts-popover {
+		height: 70px;
+	}
+
+	/*MENU*/
+	.header-menu-tab {
+		border-bottom: none !important;
+		@include box-shadow(0px, 2px, 4px, rgba(0, 0, 0, 0.2));
+		height: 112px !important;
+	}
+
+	.tab-title {
+		font-family: "RobotoBold";
+	}
+
+	.account-chat-card {
+		width: 1000px;
+		height: 150px;
+		margin-top: 20px;
+		border-radius: 0px;
+	}
+
+	.account-card-item {
+		width: 100%;
+		height: 140px;
+		min-height: 100%;
+		padding-top: 10px;
+	}
+
+	.row-account {
+		padding: 10px 25px 0px 15px !important;
+	}
+
+	.select-account {
+		text-align: center;
+		color: $primary-cyan-color;
+		font-family: "RobotoRegular";
+		position: relative;
+		top: 19px;
+		line-height: 24px;
+	}
+
+	.row-account-number {
+		padding: 0px 10px 0px 15px;
+	}
+
+	.card-radius {
+
+	}
+
+
+.card-bank{
+	margin:5px 5px 5px 10px;
+	color: $primary-cyan-color;
+}
+
+.account-name-card{
+	padding:0px 0px 0px 5px !important;
+}
+
+//Advisory
+.advise-card{
+	margin-left: 30px;
+	margin-right: 30px;
+	border-radius: 30px 0px 0px 30px;
+	img{
+		height: 120px;
+		margin:0 !important;
+	}
+}
+
+a.advise-link{
+	color: $primary-cyan-color;
+	text-align: center;
+	&.cta{
+		background: $primary-cyan-color;
+		color: #fff;
+		font-family: "RobotoBold";
+	}
+}
+
+.advise-promo{
+	font-family: "RobotoBold";
+	color: #444444;
+}
+
+.back-back-advise{
+	background:#013D43;
+	height:170px;
+}
+
+.back-advise{
+	background-image: url('https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQGdxza0kYV1WHZXJxrxwEb3lqWyzDSsRn13hjFFTl2kuFFhrTsfg');
+	background-size: 100% 100%;
+    background-repeat: no-repeat;
+	height:170px;
+	opacity:0.6;
+}
+
+.advise-cross{
+	position:relative;
+	top:-160px;
+	left:20px;
+	& i{
+		font-size: 50px;
+		color: #fff;
+	}
+}
+
+.advise-content-row{
+	padding-top:10px !important;
+}
+.advise-content-title{
+	color:#444444;
+	font-size:1.2em;
+}
+
+.advise-content-map{
+	height:170px;
+}
+
+.advise-divider{
+	background:#fff;
+	margin-top:10px;
+	border-top:none;
+	border-left:none;
+	margin-left:10px;
+}
+
+.advise-distance{
+	text-align:right;
+	color: $primary-cyan-color;
+}
+
+.advise-content-item{
+	border-bottom: none;
+	font-size:14px;
+}
+
+.educational-spot{
+	height: 160px;
+	p{
+		overflow: none !important;
+		text-overflow: none !important;
+		white-space: normal;
+		margin-top: 8px;
+	}
+}
+
+.item-educational-image{
+	figure{
+		width: 100%;
+		text-align: center;
+		img{
+			width: 130px;
+		}
+	}
+
+}
+
+

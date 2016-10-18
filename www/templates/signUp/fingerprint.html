@@ -1,0 +1,50 @@
+<ion-view view-title="SignUp" class="signUpView">
+    <ion-content class="padding">
+
+        <div class="stepsCircles">
+            <i class="ion-ios-circle-outline"></i>
+            <i class="ion-ios-circle-outline"></i>
+            <i class="ion-ios-circle-outline"></i>
+            <i class="ion-record"></i>
+            <i class="ion-ios-circle-outline"></i>
+
+        </div>
+
+        <div class="row">
+            <div class="col text-center">
+                <img src="img/icon.png" class="imgIcon">
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col text-center">
+                <h2 class="signUpTitle">FINGER PRINTS</h2>
+                <h4 class="signUpSubtitle">for future signs and assessments</h4>
+            </div>
+        </div>
+
+        <div class="row text-center">
+            <div class="col text-center">
+                <img class="fingerprintIcon" src="img/fingerprint.png">
+            </div>
+
+        </div>
+
+      <div class="row">
+        <div class="col text-center">
+          <p></p>
+          <p></p>
+          <button class="button button-clear button-light buttonWhite buttonAlignBottom maybe-later-button" ui-sref="signup.voice-verification">Maybe later</button>
+        </div>
+      </div>
+
+    </ion-content>
+
+    <ion-footer-bar class="nopadding">
+        <button class="button button-full nomargin button-calm" on-tap="signUpCtrl.checkFingerPrint()">
+            LET'S GO
+        </button>
+    </ion-footer-bar>
+
+</ion-view>

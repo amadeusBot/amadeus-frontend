@@ -1,0 +1,58 @@
+<ion-view view-title="SignUp" class="signUpView bankAccountsSelection">
+  <ion-content class="padding">
+
+    <div class="stepsCircles">
+      <i class="ion-ios-circle-outline"></i>
+      <i class="ion-ios-circle-outline"></i>
+      <i class="ion-record"></i>
+      <i class="ion-ios-circle-outline"></i>
+      <i class="ion-ios-circle-outline"></i>
+    </div>
+
+    <div class="row">
+      <div class="col text-center">
+        <img src="img/icon.png" class="imgIcon">
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col text-center">
+        <h2 class="signUpTitle">BANK ACCOUNTS</h2>
+        <h4 class="signUpSubtitle">Add your bank accounts</h4>
+      </div>
+    </div>
+
+
+    <div class="text-center">
+      <button class=" button button-icon icon ion-ios-plus-outline addAccountIcon"
+              on-tap="signUpCtrl.showAllBankAccounts()"></button>
+    </div>
+
+    <div ng-if="!signUpCtrl.userAccounts.length">
+      <div class="text-center">
+        <h4 class="signUpSubtitle">No bank accounts attached yet</h4>
+      </div>
+
+      <div class="text-center">
+        <button class="button button-clear button-large button-light buttonWhite buttonAlignBottom maybe-later-button" ui-sref="signup.fingerprint">Maybe later</button>
+      </div>
+    </div>
+
+    <div ng-if="signUpCtrl.userAccounts.length">
+      <div ng-repeat="userAccount in signUpCtrl.userAccounts" class="selectedBanks">
+        <span class="bankName">{{userAccount.bank.bank_name}}</span>
+        <p>{{userAccount.accountInfo.accountNumber}}</p>
+      </div>
+    </div>
+
+  </ion-content>
+
+  <ion-footer-bar class="nopadding">
+
+    <button class="button button-full nomargin button-calm" on-tap="signUpCtrl.getUserAccounts()" ui-sref="signup.fingerprint">
+      NEXT
+    </button>
+  </ion-footer-bar>
+
+</ion-view>

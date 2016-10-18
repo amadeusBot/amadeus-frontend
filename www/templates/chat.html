@@ -1,0 +1,77 @@
+<ion-view class="distContainer" >
+            <div class="box blue">
+                <ion-content class="padding generalChat   " delegate-handle="chat">
+                    <div class="msgContainer" ng-repeat="message in dash.messages" >
+                        <div class="row chat" ng-class="{'fromBot':message.from=='bot' , 'fromMe': message.from=='me'}">
+                            <div class="chatContainer">
+                                <img ng-if="message.from=='bot'" src="img/bender.png" class="botImg">
+                                <div ng-if="message.text" class="resp">
+                                    {{message.text}}
+                                    <!--<button ng-if="message.from=='bot'" class="button button-dark button-small button-outline icon ion-volume-medium" style="margin-left:.5em;" on-tap="dash.reproduceMessage(message.text)">
+                                    </button>-->
+                                </div>
+                                <div ng-if="message.from=='bot' && message.isFake" class="resp">
+                                    ...
+                                </div>
+                                <img ng-if="message.from=='me'" src="img/player.png" class="usrImg">
+                            </div>
+                        </div>
+                        <div ng-switch="message.type" style="width: 88%;">
+                            <div ng-switch-when="office">
+                                <div class="resp office" ng-include="'templates/offices.html'"></div>
+                            </div>
+
+                            <div ng-switch-when="contacts">
+                                <div class="resp office" ng-include="'templates/contacts.html'"></div>
+                            </div>
+
+                            <div ng-switch-when="exchange">
+                                <div class="resp exchange" ng-include="'templates/exchange.html'"></div>
+                            </div>
+
+                            <div ng-switch-when="beacon">
+                                <div class="resp exchange" ng-include="'templates/external-advise.html'"></div>
+                            </div>
+                            <div ng-switch-when="reqInfo">
+                                <div class="resp exchange" ng-include="'templates/educational-spot.html'"></div>
+                            </div>
+                            <div ng-switch-when="getAccounts">
+                                <div class="resp exchange" ng-include="'templates/accounts-chat-slider.html'"></div>
+                            </div>
+                            <div ng-switch-when="chooseContacts">
+                                <div class="row ">
+                                    <div class="col text-center modalContacts existing" on-tap="dash.showContacts()">
+                                        From my contacts
+                                    </div>
+                                    <div class="col text-center modalContacts newOne">
+                                        New
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </ion-content>
+
+
+                <ion-footer-bar keyboard-attach class="bar-stable item-input-inset recordButtons">
+                    <div class="sendInit" ng-class="{'expand':dash.expand}" on-tap="dash.expand = true;">
+                        <div ng-if="!dash.expand" class="btnInter text" ><img src="img/chat-icon.png"></div>
+                        <label ng-if="dash.expand" class="item-input-wrapper">
+                            <input id="input" ng-model="dash.msg" type="text" placeholder="Your message here" on-return="dash.sendMessage(); dash.closeKeyboard()" on-focus="dash.inputUp()" on-blur="dash.inputDown()" />
+                        </label>
+                    </div>
+                    <div ng-if="dash.msg !=''" class="btnInter micro" ng-class="{'reduceMargin':  dash.expand}"  on-tap="dash.sendMessage()">
+                        <i class="ion-paper-airplane"></i>
+                    </div>
+                    <div ng-if="dash.msg ==''" class="btnInter micro" ng-class="{'reduceMargin':  dash.expand}" on-hold="dash.showRecordPopup()">
+                        <i class="ion-android-microphone"></i>
+                    </div>
+                </ion-footer-bar>
+
+            </div>
+
+
+</ion-view>

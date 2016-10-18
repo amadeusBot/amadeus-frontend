@@ -1,0 +1,54 @@
+<ion-view view-title="SignUp" class="signUpView">
+  <ion-content class="padding">
+
+    <div class="stepsCircles">
+      <i class="ion-record"></i>
+      <i class="ion-ios-circle-outline"></i>
+      <i class="ion-ios-circle-outline"></i>
+      <i class="ion-ios-circle-outline"></i>
+      <i class="ion-ios-circle-outline"></i>
+    </div>
+
+    <div class="row">
+      <div class="col text-center">
+        <img src="img/icon.png" class="imgIcon">
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col text-center">
+        <h2 class="signUpTitle">LET'S GET STARTED</h2>
+      </div>
+    </div>
+
+    <form name="signUpForm">
+
+    <div class="">
+      <div class="list signupListForm">
+        <label class="item item-input item-floating-label">
+          <span class="input-label">Email</span>
+          <input type="email" placeholder="Email" ng-model="signUpCtrl.email" required>
+        </label>
+        <label class="item item-input item-floating-label">
+          <span class="input-label">Full name</span>
+          <input type="text" placeholder="Full Name" ng-model="signUpCtrl.fullName" required>
+        </label>
+        <label class="item item-input item-floating-label">
+          <span class="input-label">Password</span>
+          <input type="password" placeholder="Password" ng-model="signUpCtrl.password" required>
+        </label>
+      </div>
+    </div>
+    </form>
+
+  </ion-content>
+
+  <ion-footer-bar class="nopadding back-button-next">
+    <button class="button button-full nomargin button-calm" on-tap="signUpCtrl.createFigoUser()"
+            ng-disabled="!signUpCtrl.email || !signUpCtrl.fullName || !signUpCtrl.password">
+      NEXT
+    </button>
+  </ion-footer-bar>
+
+</ion-view>
