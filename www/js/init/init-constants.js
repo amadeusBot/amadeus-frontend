@@ -10,7 +10,7 @@
     angular
         .module('AmadeusApp')
         .constant('backendConstant', {
-            url: 'https://3dc89708.ngrok.io'
+            url: 'https://461e99ea.ngrok.io'
         })
         .constant('iBeaconsConfig', {
             emulator: false
