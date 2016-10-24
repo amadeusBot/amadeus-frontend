@@ -4,8 +4,8 @@
 (function () {
   'use strict';
   angular
-    .module('AmadeusApp.factory')
-    .factory('FigoFactory', FigoFactory);
+      .module('AmadeusApp.factory')
+      .factory('FigoFactory', FigoFactory);
 
   function FigoFactory($http, $q, backendConstant, UserFactory) {
 
@@ -17,12 +17,28 @@
       var reqUrl = backendConstant.url + '/rest/user';
 
       $http.post(reqUrl, JSON.stringify({mail: email, fullName: fullName, password: password})).then(
-        function (data) {
-          deferred.resolve(data.data);
-        },
-        function (err) {
-          deferred.reject(err);
-        });
+          function (data) {
+            deferred.resolve(data.data);
+          },
+          function (err) {
+            deferred.reject(err);
+          });
+      return deferred.promise;
+    }
+
+    function createMongoUser(email, password, fullName) {
+
+      var deferred = $q.defer();
+
+      var reqUrl = backendConstant.url + '/rest/user-no-figo';
+
+      $http.post(reqUrl, JSON.stringify({mail: email, fullName: fullName, password: password})).then(
+          function (data) {
+            deferred.resolve(data.data);
+          },
+          function (err) {
+            deferred.reject(err);
+          });
       return deferred.promise;
     }
 
@@ -33,12 +49,12 @@
       var reqUrl = backendConstant.url + '/onboarding/bankList';
 
       $http.get(reqUrl).then(
-        function (data) {
-          deferred.resolve(data.data);
-        },
-        function (err) {
-          deferred.reject(err);
-        });
+          function (data) {
+            deferred.resolve(data.data);
+          },
+          function (err) {
+            deferred.reject(err);
+          });
       return deferred.promise;
     }
 
@@ -47,12 +63,12 @@
 
       var reqUrl = backendConstant.url + '/auth/login';
       $http.post(reqUrl, JSON.stringify({mail: email, password: password})).then(
-        function (data) {
-          deferred.resolve(data.data);
-        },
-        function (err) {
-          deferred.reject(err);
-        });
+          function (data) {
+            deferred.resolve(data.data);
+          },
+          function (err) {
+            deferred.reject(err);
+          });
       return deferred.promise;
     }
 
@@ -68,12 +84,12 @@
           'Authorization': 'Bearer ' + UserFactory.getToken()
         }
       }).then(
-        function (data) {
-          deferred.resolve(data.data);
-        },
-        function (err) {
-          deferred.reject(err);
-        });
+          function (data) {
+            deferred.resolve(data.data);
+          },
+          function (err) {
+            deferred.reject(err);
+          });
       return deferred.promise;
     }
 
@@ -88,12 +104,12 @@
           'Authorization': 'Bearer ' + UserFactory.getToken()
         }
       }).then(
-        function (data) {
-          deferred.resolve(data.data);
-        },
-        function (err) {
-          deferred.reject(err);
-        });
+          function (data) {
+            deferred.resolve(data.data);
+          },
+          function (err) {
+            deferred.reject(err);
+          });
       return deferred.promise;
     }
 
@@ -107,12 +123,12 @@
           'Authorization': 'Bearer ' + UserFactory.getToken()
         }
       }).then(
-        function (data) {
-          deferred.resolve(data.data);
-        },
-        function (err) {
-          deferred.reject(err);
-        });
+          function (data) {
+            deferred.resolve(data.data);
+          },
+          function (err) {
+            deferred.reject(err);
+          });
       return deferred.promise;
     }
 
@@ -129,12 +145,12 @@
           'Authorization': 'Bearer ' + UserFactory.getToken()
         }
       }).then(
-        function (data) {
-          deferred.resolve(data.data);
-        },
-        function (err) {
-          deferred.reject(err);
-        });
+          function (data) {
+            deferred.resolve(data.data);
+          },
+          function (err) {
+            deferred.reject(err);
+          });
       return deferred.promise;
     }
 
@@ -144,12 +160,12 @@
       var reqUrl = 'https://api.figo.me/task/progress?id=' + taskId;
 
       $http.post(reqUrl).then(
-        function (data) {
-          deferred.resolve(data.data);
-        },
-        function (err) {
-          deferred.reject(err);
-        });
+          function (data) {
+            deferred.resolve(data.data);
+          },
+          function (err) {
+            deferred.reject(err);
+          });
       return deferred.promise;
 
     }
@@ -161,12 +177,12 @@
       var reqUrl = 'https://api.figo.me/task/progress?id=' + taskId;
 
       $http.post(reqUrl, {response: response}).then(
-        function (data) {
-          deferred.resolve(data.data);
-        },
-        function (err) {
-          deferred.reject(err);
-        });
+          function (data) {
+            deferred.resolve(data.data);
+          },
+          function (err) {
+            deferred.reject(err);
+          });
       return deferred.promise;
 
     }
@@ -174,6 +190,7 @@
 
     return {
       createFigoUser: createFigoUser,
+      createMongoUser: createMongoUser,
       getBankList: getBankList,
       doLogin: doLogin,
       sendAccount: sendAccount,
@@ -190,4 +207,3 @@
 
 
 })();
-

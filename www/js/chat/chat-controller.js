@@ -12,14 +12,14 @@
 
         var self = this;
 
-      var transferContext = {
-        accountId: "",
-        iban: "",
-        amount: "",
-        name: "",
-        purpose: "My first test",
-        type: "Transfer"
-      };
+        var transferContext = {
+            accountId: "",
+            iban: "",
+            amount: "",
+            name: "",
+            purpose: "My first test",
+            type: "Transfer"
+        };
 
         //Var Definitons
         self.response = {};
@@ -243,142 +243,147 @@
         }
 
         function startTransfer(response) {
-          /*if(!transferContext.accountId || !transferContext.destAccount || !transferContext.amount) {
-            printResponse({fulfillment:{speech:"I'm a bit confused."}});
-            return;
-          }
-*/
+            /*if(!transferContext.accountId || !transferContext.destAccount || !transferContext.amount) {
+             printResponse({fulfillment:{speech:"I'm a bit confused."}});
+             return;
+             }
+             */
 
-          printResponse({fulfillment:{speech:"Receiving your PHOTOTAN "}});
-          transferContext.amount = parseInt(response.parameters.money);
+            printResponse({fulfillment:{speech:"Receiving your PHOTOTAN "}});
+            transferContext.amount = parseInt(response.parameters.money);
 
-          FigoFactory.doTransfer(transferContext).then(
-            function(response) {
-              console.log("TRANSFER SUCCESS");
-              $timeout(function() {
-              startIntervalToCheckTransferTask(response.task_token);
-              }, 500);
-            },
-            function (error) {
-              console.log("TRANSFER ERROR");
-              console.log(error);
-            }
-          );
+
+            setTimeout(function() {
+                showCoordinatePopup();
+            }, 4000);
+
+            /*FigoFactory.doTransfer(transferContext).then(
+             function(response) {
+             console.log("TRANSFER SUCCESS");
+             $timeout(function() {
+             startIntervalToCheckTransferTask(response.task_token);
+             }, 500);
+             },
+             function (error) {
+             console.log("TRANSFER ERROR");
+             console.log(error);
+             }
+             );*/
+
 
 
         }
 
-      var taskInterval;
-      function startIntervalToCheckTransferTask(taskToken) {
-        $ionicLoading.show();
-        taskInterval = setInterval(function () {
-          FigoFactory.checkForTransferProgress(taskToken).then(
-            function (data) {
-              console.log("SUCCESS");
-              console.log(data);
-              if (data.is_waiting_for_response) {
-                clearInterval(taskInterval);
-                $ionicLoading.hide();
-                showCoordinatePopup(data.challenge, taskToken);
-              } else if (data.is_ended) {
-                clearInterval(taskInterval);
-                $ionicLoading.hide();
-                var alertPopup = $ionicPopup.alert({
-                  title: 'Transfer success',
-                  template: 'Your transfer has been completed successfully'
-                });
-                updateAccounts();
-              }
-            },
-            function (error) {
-              console.log("EEERRRORRR");
-              console.log(error);
-            }
-          )
-        }, 1000);
-      }
+        var taskInterval;
+        function startIntervalToCheckTransferTask(taskToken) {
+            $ionicLoading.show();
+            taskInterval = setInterval(function () {
+                FigoFactory.checkForTransferProgress(taskToken).then(
+                    function (data) {
+                        console.log("SUCCESS");
+                        console.log(data);
+                        if (data.is_waiting_for_response) {
+                            clearInterval(taskInterval);
+                            $ionicLoading.hide();
+                            showCoordinatePopup(data.challenge, taskToken);
+                        } else if (data.is_ended) {
+                            clearInterval(taskInterval);
+                            $ionicLoading.hide();
+                            var alertPopup = $ionicPopup.alert({
+                                title: 'Transfer success',
+                                template: 'Your transfer has been completed successfully'
+                            });
+                            updateAccounts();
+                        }
+                    },
+                    function (error) {
+                        console.log("EEERRRORRR");
+                        console.log(error);
+                    }
+                )
+            }, 1000);
+        }
 
 
-      function updateAccounts() {
-        self.userAccounts.forEach(function(account) {
-          if(account.account_id === transferContext.accountId) {
+        function updateAccounts() {
+            self.userAccounts.forEach(function(account) {
+                if(account.account_id === transferContext.accountId) {
 
-            account.balance.balance = account.balance.balance - transferContext.amount;
+                    account.balance.balance = account.balance.balance - transferContext.amount;
 
-            var lastTransaction = {
-              "value_date": new Date(),
-              "bank_name": "Demobank",
-              "account_id": "A1776909.1",
-              "bank_code": "90090042",
-              "currency": "EUR",
-              "purpose": "Ihre Bestellung Vom 01.03. / Re-Nr. 9123093129013290",
-              "transaction_code": 4,
-              "booked": true,
-              "booking_date": "2016-10-10T00:00:00.000Z",
-              "name": "Fidibus Holzspan Gmbh & Co. Kg",
-              "creation_timestamp": "2016-10-11T03:05:44.000Z",
-              "amount": parseInt(transferContext.amount) * -1,
-              "account_number": "4711951501",
-              "visited": true,
-              "modification_timestamp": "2016-10-11T03:05:44.000Z",
-              "type": "Transfer",
-              "transaction_id": "T1776909.2",
-              "booking_text": "Lastschrift"
-            };
+                    var lastTransaction = {
+                        "value_date": new Date(),
+                        "bank_name": "Demobank",
+                        "account_id": "A1776909.1",
+                        "bank_code": "90090042",
+                        "currency": "EUR",
+                        "purpose": "Ihre Bestellung Vom 01.03. / Re-Nr. 9123093129013290",
+                        "transaction_code": 4,
+                        "booked": true,
+                        "booking_date": "2016-10-10T00:00:00.000Z",
+                        "name": "Fidibus Holzspan Gmbh & Co. Kg",
+                        "creation_timestamp": "2016-10-11T03:05:44.000Z",
+                        "amount": parseInt(transferContext.amount) * -1,
+                        "account_number": "4711951501",
+                        "visited": true,
+                        "modification_timestamp": "2016-10-11T03:05:44.000Z",
+                        "type": "Transfer",
+                        "transaction_id": "T1776909.2",
+                        "booking_text": "Lastschrift"
+                    };
 
-            account.lastTransaction = lastTransaction;
-          }
-        });
-        UserFactory.setUserAccount(self.userAccounts);
-      }
-
-
-      function showCoordinatePopup(challenge, transferTaskId) {
-        $scope.data = {};
-
-        var myPopup = $ionicPopup.show({
-          template: '<input type="number" ng-model="data.coordinateNumber">',
-          title: 'Enter your bank coordinate code ' + challenge.label,
-          scope: $scope,
-          cssClass: 'coordinateCodePopup',
-          buttons: [
-            {
-              text: 'Cancel transfer',
-              type: 'button-calm button-clear'
-            },
-            {
-              text: '<b>Confirm</b>',
-              type: 'button-calm',
-              onTap: function (e) {
-                if (!$scope.data.coordinateNumber) {
-                  e.preventDefault();
-                } else {
-                  return $scope.data.coordinateNumber;
+                    account.lastTransaction = lastTransaction;
                 }
-              }
-            }
-          ]
-        });
+            });
+            UserFactory.setUserAccount(self.userAccounts);
+        }
 
-        myPopup.then(function (res) {
-          if (res) {
-            FigoFactory.sendResponseForChallenge(transferTaskId, res).then(
-              function (data) {
-                console.log("sendResponseForChallenge");
-                console.log(data);
-                startIntervalToCheckTransferTask(transferTaskId);
-              },
-              function (error) {
-                console.log("ERRROR");
-                console.log(error)
-              })
-          }
-        });
 
-        $timeout(function() {
-          $scope.data.coordinateNumber = 111111;
-        }, 3000)
-      }
+        function showCoordinatePopup() {
+            $scope.data = {};
+
+            var myPopup = $ionicPopup.show({
+                template: '<input type="number" ng-model="data.coordinateNumber">',
+                title: 'Enter your bank coordinate code iTan 65',
+                scope: $scope,
+                cssClass: 'coordinateCodePopup',
+                buttons: [
+                    {
+                        text: 'Cancel transfer',
+                        type: 'button-calm button-clear'
+                    },
+                    {
+                        text: '<b>Confirm</b>',
+                        type: 'button-calm',
+                        onTap: function (e) {
+                            if (!$scope.data.coordinateNumber) {
+                                e.preventDefault();
+                            } else {
+                                return $scope.data.coordinateNumber;
+                            }
+                        }
+                    }
+                ]
+            });
+
+            myPopup.then(function (res) {
+                if (res) {
+                    $ionicLoading.hide();
+
+                    $timeout(function() {
+                        var alertPopup = $ionicPopup.alert({
+                            title: 'Transfer success',
+                            template: 'Your transfer has been completed successfully'
+                        });
+                        updateAccounts();
+                    }, 4000);
+                }
+            });
+
+            $timeout(function() {
+                $scope.data.coordinateNumber = 111111;
+            }, 3000)
+        }
 
         function getReqInformation(response){
             printResponse({fulfillment:{speech:null}}, 'reqInfo');
@@ -400,24 +405,24 @@
         }
 
         function chooseBankAccount(bankAccount){
-          transferContext.accountId = bankAccount.account_id;
+            transferContext.accountId = bankAccount.account_id;
             printResponse({fulfillment:{speech:"To whom do you want to send?"}}, 'chooseContacts');
         }
 
         function chooseContact(contact){
-          console.log(contact);
-          transferContext.name = contact;
-          self.userAccounts.forEach(function(account) {
-            if(account.iban) {
-              if(account.account_id !== transferContext.accountId){
-                transferContext.iban = account.iban;
-              }
-            }
-          });
+            console.log(contact);
+            transferContext.name = contact;
+            self.userAccounts.forEach(function(account) {
+                if(account.iban) {
+                    if(account.account_id !== transferContext.accountId){
+                        transferContext.iban = account.iban;
+                    }
+                }
+            });
 
-          //SELECCIONAR CUENTA LIBRE
-          printResponse({fulfillment:{speech:"Perfect! How much money do you want to send to "
-                + contact + "?"}});
+            //SELECCIONAR CUENTA LIBRE
+            printResponse({fulfillment:{speech:"Perfect! How much money do you want to send to "
+            + contact + "?"}});
         }
 
         function getExchange(response){ // Currency exchange rate euro to dollar
@@ -444,7 +449,7 @@
         function inputUp() {
             if (isIOS) $scope.data.keyboardHeight = 216;
             $timeout(function () {
-              $ionicScrollDelegate.$getByHandle('chat').scrollBottom(true);
+                $ionicScrollDelegate.$getByHandle('chat').scrollBottom(true);
             }, 300);
 
         };
@@ -453,7 +458,7 @@
             if (isIOS) $scope.data.keyboardHeight = 0;
             $ionicScrollDelegate.resize();
             $timeout(function () {
-              $ionicScrollDelegate.$getByHandle('chat').scrollBottom(true);
+                $ionicScrollDelegate.$getByHandle('chat').scrollBottom(true);
             });
         };
 
@@ -565,19 +570,19 @@
                 scope: $scope
             }).then(
                 function(modal){
-                self.adviseModal = modal;
-                self.adviseModal.show();
-            });
+                    self.adviseModal = modal;
+                    self.adviseModal.show();
+                });
         }
 
         function showContacts(){
             $ionicModal.fromTemplateUrl('templates/chooseContact.html',{
                 scope: $scope
             }).then(
-            function(modal){
-                self.closeModal = modal;
-                self.closeModal.show();
-            });
+                function(modal){
+                    self.closeModal = modal;
+                    self.closeModal.show();
+                });
         }
 
         function closeSeeMore(){
@@ -595,4 +600,3 @@
 
     }
 })();
-
